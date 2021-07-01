@@ -24,6 +24,7 @@
           <input id="my-id" type="hidden" value="{{user.id}}">
           <a id="my-profile" href="/profile" class="btn">내 프로필</a>
           <a id="logout" href="/auth/logout" class="btn">로그아웃</a>
+          <button id="profileUd" class="btn">프로필 수정</button>
         {% else %}
           <form id="login-form" action="/auth/login" method="post">
             <div class="input-group">
@@ -37,6 +38,7 @@
             <a id="join" href="/join" class="btn">회원가입</a>
             <button id="login" type="submit" class="btn">로그인</button>
             <a id="kakao" href="/auth/kakao" class="btn">카카오톡</a>
+            <a id="naver" href="/auth/naver" class="btn">네이버</a>
           </form>
         {% endif %}
         </div>
@@ -54,6 +56,22 @@
         if (new URL(location.href).searchParams.get('loginError')) {
           alert(new URL(location.href).searchParams.get('loginError'));
         }
+
+        document.getElementById('profileUd').addEventListener('click',()=>{
+          const newNick = prompt('프로필을 수정하시겠습니까');
+          if(newNick){
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+              if(xhr.status===200){
+                location.reload();
+              } else {
+                console.error(xhr.responseText);
+              }
+            }
+            xhr.open('PATCH', '/user/' + newNick);
+            xhr.send();
+          }
+        })
       };
     </script>
     {% block script %}

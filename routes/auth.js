@@ -6,7 +6,7 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const router = express.Router();
 
 // 회원가입 라우터
-// 로그인한 사람이 로그인하는 것은 안되니깐 isNotLoggedIn을 넣어줌
+// 로그인한 사람이 회원가입하는 것은 안되니깐 isNotLoggedIn을 넣어줌
 // isNotLoggdIn은 !req.isAuthenticated()이기 때문에 로그인이 안돼있으면 next()를 호출함. 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
   const { email, nick, password } = req.body;
@@ -70,5 +70,14 @@ router.get('/kakao/callback', passport.authenticate('kakao', {
 }), (req, res) => {
   res.redirect('/');
 });
+
+router.get('/naver', passport.authenticate('naver'));
+
+router.get('/naver/callback', passport.authenticate('naver', {
+  failureRedirect: '/',
+}), (req, res) => {
+  res.redirect('/');
+});
+
 
 module.exports = router;

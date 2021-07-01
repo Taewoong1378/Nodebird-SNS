@@ -48,6 +48,14 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
   outline: none;
 }
 
+.email-content {
+  font-size: 12px;
+}
+
+.password-content {
+  font-size: 12px;
+}
+
 input:focus {
   border: 1px solid #f56707;
   box-shadow: 0 0 5px #f56707;

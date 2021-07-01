@@ -36,17 +36,17 @@ router.post('/:id/notfollow', isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.delete('/:content', isLoggedIn, async(req,res,next)=>{
-  try { 
-    const post = await Post.findOne({ where: { id: req.body.content } });
-    if (post) {
-      await post.destroy(parseInt(req.body.content));
-      res.send('success');
-    }
-  } catch (error) {
-    console.log(error);
+router.patch(':/nick', isLoggedIn, async(req, res, next)=>{
+  try {
+    console.log(req.user.id, req.params.id);
+    const user = await User.update({ nick: req.params.nick }, { where: { id: req.user.id } });
+    res.send('success');
+  } catch(error) {
+    console.error(error);
     next(error);
   }
 })
+
+
 
 module.exports = router;

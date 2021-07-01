@@ -9,12 +9,18 @@
       <div class="input-group">
         <label for="join-email">이메일</label>
         <input id="join-email" type="email" name="email"></div>
+        <p class="email-content"></p>
       <div class="input-group">
         <label for="join-nick">닉네임</label>
         <input id="join-nick" type="text" name="nick"></div>
       <div class="input-group">
         <label for="join-password">비밀번호</label>
         <input id="join-password" type="password" name="password">
+      </div>
+      <div class="input-group">
+        <label for="join-password2">비밀번호 확인</label>
+        <input id="join-password2" type="password" name="password2">
+        <p class="password-content"></p>
       </div>
       <button id="join-btn" type="submit" class="btn">회원가입</button>
     </form>
@@ -27,6 +33,60 @@
       if (new URL(location.href).searchParams.get('error')) {
         alert('이미 존재하는 이메일입니다.');
       }
-    };
-  </script>
+
+        const input = document.querySelector('#join-email');
+        const p = document.querySelector('.email-content');
+        const isEmail = (value) => {
+          return (value.indexOf('@') > 1)
+            && (value.split('@')[1].indexOf('.') > 1)
+        }
+        let value;
+
+        input.addEventListener('keyup', (event) => {
+          value = event.currentTarget.value;
+          if (isEmail(value)) {
+            p.style.color = 'green';
+            p.textContent = `이메일 형식입니다`;
+          } else {
+            p.style.color = 'red';
+            p.textContent = `이메일 형식이 아닙니다`;
+          }
+        });
+
+        const isPassword = (value1, value2) => {
+          return value1 === value2;
+        }
+        let password1;
+        let password2;
+        const pwd1 = document.querySelector('#join-password');
+        const pwd2 = document.querySelector('#join-password2');
+        const p2 = document.querySelector('.password-content');
+        
+        pwd1.addEventListener('keyup', (event) => {
+          password1 = event.currentTarget.value;
+        })
+
+        pwd2.addEventListener('keyup', (event) => {
+            password2 = event.currentTarget.value;
+            if(password1 !== password2){
+            p2.style.color = 'red';
+            p2.textContent = `비밀번호가 일치하지 않습니다`;
+          } else {
+            p2.style.color = 'green';
+            p2.textContent = `비밀번호가 일치합니다`;
+          }
+        });
+
+        const btn = document.querySelector('#join-btn');
+        let status = ()=>{
+          return isEmail(value) && isPassword(password1, password2);
+        }
+        btn.addEventListener('click',(event)=>{
+          if(!status()){
+            event.preventDefault();
+            alert(`모든 항목을 제대로 입력해주십시오`);
+          }
+        })
+    };        
+    </script>
 {% endblock %}
