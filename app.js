@@ -6,12 +6,17 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const passport = require('passport');
+// const helmet = require('helmet');
+// const hpp = require('hpp');
+// const redis = require('redis');
+// const RedisStore = require('connect-redis')(session);
 
 dotenv.config();
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
+const likeRouter = require('./routes/like');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
@@ -40,7 +45,9 @@ sequelize.sync({ force: false })
     console.error(err);
   });
 
+
 app.use(morgan('dev'));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/img', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
@@ -55,6 +62,7 @@ app.use(session({
     secure: false,
   },
 }));
+
 // express-session보다 아래에 위치해야됨. session을 받아서 실행해야하기 때문에.
 // passport.session이 실행될 때, index.js의 deserializeUser가 실행된다
 app.use(passport.initialize());   // 요청(req 객체)에 passport 설정을 심는다.
@@ -64,6 +72,7 @@ app.use('/', pageRouter);
 app.use('/auth', authRouter);
 app.use('/post', postRouter);
 app.use('/user', userRouter);
+app.use('/like', likeRouter);
 
 // 404처리 미들웨어
 app.use((req, res, next) => {

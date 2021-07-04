@@ -29,5 +29,6 @@ module.exports = class Post extends Sequelize.Model {
     db.Post.belongsTo(db.User);
     // 게시글과 해시태그는 다대다 관계, 따라서 PostHashtag라는 중간 테이블 생성
     db.Post.belongsToMany(db.Hashtag, { through: 'PostHashtag' });
+    db.Post.belongsToMany(db.User, { through: 'Likes', as: 'Liker' });
   }
 };

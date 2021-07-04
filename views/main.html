@@ -50,6 +50,11 @@
               {% if twit.img %}
                 <div class="twit-img"><img src="{{twit.img}}" alt="섬네일"></div>
               {% endif %}
+              {% if user and not LikedIdList.includes(twit.id) %}
+              <button class='like'>좋아요</button>
+              {% elif user and LikedIdList.includes(twit.id) %}
+              <button class='unlike'>좋아요 취소</button>
+              {% endif %}
             </div>
           {% endfor %}
         </div>
@@ -135,7 +140,38 @@
             } 
           } 
       });   
-  });
+  }); 
 
-  </script>
+  document.querySelectorAll('.like').forEach(function(tag){
+      tag.addEventListener('click',function(){ 
+        const isLoggedIn = document.querySelector('#my-id'); 
+        const twitId = tag.parentNode.querySelector('.twit-id').value;
+        if (isLoggedIn){  
+              axios.post(`/like/add/${twitId}`)  
+                .then(()=>{ 
+                  location.reload(); 
+                }) 
+                .catch((error)=>{ 
+                  console.error(error); 
+                }); 
+            } 
+        });   
+    });
+
+      document.querySelectorAll('.unlike').forEach(function(tag){
+      tag.addEventListener('click',function(){ 
+        const isLoggedIn = document.querySelector('#my-id'); 
+        const twitId = tag.parentNode.querySelector('.twit-id').value;
+        if (isLoggedIn){  
+              axios.post(`/like/cancle/${twitId}`)  
+                .then(()=>{ 
+                  location.reload(); 
+                }) 
+                .catch((error)=>{ 
+                  console.error(error); 
+                }); 
+          } 
+      });   
+  }); 
+</script>
 {% endblock %}

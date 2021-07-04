@@ -9,6 +9,7 @@ router.use((req, res, next) => {
   res.locals.followerCount = req.user ? req.user.Followers.length : 0;
   res.locals.followingCount = req.user ? req.user.Followings.length : 0;
   res.locals.followerIdList = req.user ? req.user.Followings.map(f => f.id) : [];
+  res.locals.LikedIdList = req.user ? req.user.Liked.map(l => l.id) : [];
   next();
 });
 
@@ -23,21 +24,24 @@ router.get('/join', isNotLoggedIn, (req, res) => {
 router.get('/', async (req, res, next) => {
   try {
     const posts = await Post.findAll({
-      include: {
+      include: [{
         model: User,
         attributes: ['id', 'nick'],
-      },
+      }],
       order: [['createdAt', 'DESC']],
     });
+    
     res.render('main', {
       title: 'NodeBird',
       twits: posts,
+      
     });
   } catch (err) {
     console.error(err);
     next(err);
   }
 });
+
 
 router.get('/hashtag', async (req, res, next) => {
   const query = req.query.hashtag;
@@ -48,11 +52,11 @@ router.get('/hashtag', async (req, res, next) => {
     const hashtag = await Hashtag.findOne({ where: { title: query } });
     let posts = [];
     if (hashtag) {
-      posts = await hashtag.getPosts({ include: [{ model: User, attributes: ['id', 'nick'] }] });
+      posts = await hashtag.getPosts({ include: [{ model: User }] });
     }
 
     return res.render('main', {
-      title: `${query} 검색 결과 | NodeBird`,
+      title: `${query} | NodeBird`,
       twits: posts,
     });
   } catch (error) {
@@ -60,5 +64,7 @@ router.get('/hashtag', async (req, res, next) => {
     return next(error);
   }
 });
+
+
 
 module.exports = router;

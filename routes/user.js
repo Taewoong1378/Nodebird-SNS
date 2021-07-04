@@ -36,17 +36,16 @@ router.post('/:id/notfollow', isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.patch(':/nick', isLoggedIn, async(req, res, next)=>{
+router.post('/profile', isLoggedIn, async(req, res, next)=>{
   try {
-    console.log(req.user.id, req.params.id);
-    const user = await User.update({ nick: req.params.nick }, { where: { id: req.user.id } });
-    res.send('success');
+  await User.update({ nick: req.body.nick }, {
+    where: { id: req.user.id },
+  });
+  res.redirect('/profile');
   } catch(error) {
     console.error(error);
     next(error);
-  }
-})
-
-
+  } 
+});
 
 module.exports = router;

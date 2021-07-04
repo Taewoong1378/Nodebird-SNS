@@ -3,10 +3,12 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const { Post, Hashtag } = require('../models');
+const Post = require('../models/post');
+const { Hashtag, User } = require('../models');
 const { isLoggedIn } = require('./middlewares');
 
 const router = express.Router();
+
 
 try {
   fs.readdirSync('uploads');
@@ -27,6 +29,7 @@ const upload = multer({
   }),
   limits: { fileSize: 5 * 1024 * 1024 },
 });
+
 
 router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
   console.log(req.file);
@@ -66,7 +69,29 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
   }
 });
 
-router.delete('/:postId', isLoggedIn, async (req, res, next) => { // DELETE /post/10
+router.post('/:postId/like', isLoggedIn, async (req, res, next) => {
+  try {
+    const post = await Post.findOne({ where: { id: req.params.postId }});
+    await post.addLiker(req.user.id);
+    res.send('Ok');
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.delete('/:postId/like', isLoggedIn, async (req, res, next) => { // DELETE /post/1/like
+  try {
+    const post = await Post.findOne({ where: { id: req.params.postId }});
+    await post.removeLiker(req.user.id);
+    res.send('Ok');
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.delete('/:postId', isLoggedIn, async (req, res, next) => {
   try {
     await Post.destroy({
       where: {
