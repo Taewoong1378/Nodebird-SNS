@@ -2,11 +2,11 @@
   "name": "sns",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon app",
-    "dev": "nodemon server",
-    "test": "jest"
+    "start": "nodemon server",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "author": "taewoong",
   "license": "ISC",
@@ -36,7 +36,9 @@
     "sequelize": "^6.6.2"
   },
   "devDependencies": {
+    "artillery": "^1.7.6",
     "jest": "^27.0.6",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
   }
 }
