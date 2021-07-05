@@ -9,11 +9,10 @@ body {
 .smartdong{
     position: absolute;
     top: 10px;
-    right: calc(50% - 300px);
+    right: 30%;
     width: 200px;
-    z-index: 100;
+    z-index: -1;
 }  
- 
 
 html, body { margin: 0; padding: 0; height: 100%; }
 .btn {
@@ -187,12 +186,14 @@ textarea:focus {
 
 .followings_half {
   position: absolute;
-  left: 50%;
+  top: 0;
+  left: 60%;
 }
 
 .followers_half {
   position: absolute;
-  left: 70%;
+  top: 0;
+  left: 80%;
 }
 
 footer {

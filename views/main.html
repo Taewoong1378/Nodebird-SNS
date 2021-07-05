@@ -41,9 +41,9 @@
               {% if user and user.id === twit.User.id %}
               <button class="twit-delete"> 게시글 삭제</button>
               {% endif %}
-              {% if not followerIdList.includes(twit.User.id) and twit.User.id !== user.id %}
+              {% if user and not followerIdList.includes(twit.User.id) and twit.User.id !== user.id %}
                 <button class="twit-follow">팔로우하기</button>
-              {% else %}
+              {% elif user and followerIdList.includes(twit.User.id) and twit.User.id !== user.id %}
               <button class="twit-notfollow">팔로잉끊기</button>              
               {% endif %}
               <div class="twit-content">{{twit.content}}</div>

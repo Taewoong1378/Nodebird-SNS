@@ -2,7 +2,7 @@
   "name": "sns",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app",
     "dev": "nodemon server",
@@ -36,6 +36,7 @@
     "sequelize": "^6.6.2"
   },
   "devDependencies": {
+    "jest": "^27.0.6",
     "nodemon": "^2.0.7"
   }
 }

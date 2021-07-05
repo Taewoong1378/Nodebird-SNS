@@ -43,7 +43,7 @@
         </div>
         <footer>
           Made by&nbsp;
-          <a href="https://github.com/Taewoong1378" target="_blank">Taewoong Kang</a>
+          <a href="https://github.com/Taewoong1378/Nodebird-SNS" target="_blank">Taewoong Kang</a>
         </footer>
       </div>
       {% block content %}
@@ -55,6 +55,8 @@
         if (new URL(location.href).searchParams.get('loginError')) {
           alert(new URL(location.href).searchParams.get('loginError'));
         }
+
+
       };
     </script>
     {% block script %}
