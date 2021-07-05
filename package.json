@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server",
+    "start": "cross-env NODE_ENV=production PORT=80 pm2 start server.js -i 0",
+    "dev": "nodemon server",
     "test": "jest",
     "coverage": "jest --coverage"
   },
@@ -33,7 +34,8 @@
     "pm2": "^5.1.0",
     "redis": "^3.1.2",
     "sanitize-html": "^2.4.0",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.2",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "artillery": "^1.7.6",
