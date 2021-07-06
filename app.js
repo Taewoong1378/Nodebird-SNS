@@ -76,7 +76,7 @@ if(process.env.NODE_ENV === 'production') {
   sessionOption.proxy = true;
 }
 
-
+app.use(session(sessionOption));
 // express-session보다 아래에 위치해야됨. session을 받아서 실행해야하기 때문에.
 // passport.session이 실행될 때, index.js의 deserializeUser가 실행된다
 app.use(passport.initialize());   // 요청(req 객체)에 passport 설정을 심는다.
