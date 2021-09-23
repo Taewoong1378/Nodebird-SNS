@@ -116,7 +116,7 @@ textarea:focus {
   margin-top: 30px;
 }
 .user-name { font-weight: bold; font-size: 18px; }
-.count { font-weight: bold; color: #C3201F; font-size: 18px; }
+.count { font-weight: bold; color: white; font-size: 18px; }
 .timeline {
   margin-top: 10px;
   width: 100%;
@@ -138,8 +138,8 @@ textarea:focus {
   float: left;
   cursor: pointer;
   border-radius: 4px;
-  border: 1px solid #C3201F;
-  background-color: #C3201F;
+  border: 1px solid #da6262;
+  background-color: #da6262;
   padding: 0 10px;
   color: white;
   font-size: 12px;
@@ -151,7 +151,7 @@ textarea:focus {
 #twit-btn {
   float: right;
   color: white;
-  background: #C3201F;
+  background: #da6262;
   border: none;
 }
 .twit {
@@ -196,10 +196,18 @@ textarea:focus {
   left: 60%;
 }
 
+.followings_half div {
+  text-align: center;
+}
+
 .followers_half {
   position: absolute;
   top: 0;
   left: 80%;
+}
+
+.followers_half div {
+  text-align: center;
 }
 
 footer {
