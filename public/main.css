@@ -6,12 +6,13 @@ button, .container, .timeline, .twits {
 body {
     margin-top: 200px;
 }
-.smartdong{
+.kucc{
     position: absolute;
     top: 10px;
-    right: 30%;
-    width: 200px;
+    right: 34%;
     z-index: -1;
+    width: 120px;
+    height: auto;
 }  
 
 html, body { margin: 0; padding: 0; height: 100%; }
@@ -23,7 +24,7 @@ html, body { margin: 0; padding: 0; height: 100%; }
   border-radius: 4px;
   background: white;
   border: 1px solid silver;
-  color: #f56707;
+  color: #C3201F;
   height: 37px;
   line-height: 37px;
   vertical-align: top;
@@ -56,13 +57,13 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
 }
 
 input:focus {
-  border: 1px solid #f56707;
-  box-shadow: 0 0 5px #f56707;
+  border: 1px solid #C3201F;
+  box-shadow: 0 0 5px #C3201F;
 }
 
 textarea:focus {
-  border: 1px solid #f56707;
-  box-shadow: 0 0 5px #f56707;
+  border: 1px solid #C3201F;
+  box-shadow: 0 0 5px #C3201F;
 }
 
 .container { width: 100%; height: 100%; }
@@ -87,9 +88,10 @@ textarea:focus {
   text-align: left;
   padding: 10px;
   margin-right: 10px;
+  margin-left: 10px;
   border-radius: 4px;
   border: 1px solid silver;
-  background: #f79351;
+  background: #C3201F;
 }
 #profile {
   margin-top: 30px;
@@ -102,19 +104,19 @@ textarea:focus {
   border-radius: 4px;
   background: white;
   border: 1px solid silver;
-  color: #f56707;
+  color: #C3201F;
   height: 37px;
   line-height: 37px;
   font-size: 12px;
 }
 .mainpage {
-  color: #f56707;
+  color: #C3201F;
   font-size: 27px;
   display: block;
   margin-top: 30px;
 }
 .user-name { font-weight: bold; font-size: 18px; }
-.count { font-weight: bold; color: #f56707; font-size: 18px; }
+.count { font-weight: bold; color: #C3201F; font-size: 18px; }
 .timeline {
   margin-top: 10px;
   width: 100%;
@@ -126,7 +128,7 @@ textarea:focus {
 #twit-form {
   border-bottom: 1px solid silver;
   padding: 10px;
-  background: #f79351;
+  background: #C3201F;
   overflow: hidden;
 }
 #img-preview { max-width: 100%; }
@@ -134,8 +136,8 @@ textarea:focus {
   float: left;
   cursor: pointer;
   border-radius: 4px;
-  border: 1px solid #f56707;
-  background-color: #f56707;
+  border: 1px solid #C3201F;
+  background-color: #C3201F;
   padding: 0 10px;
   color: white;
   font-size: 12px;
@@ -147,7 +149,7 @@ textarea:focus {
 #twit-btn {
   float: right;
   color: white;
-  background: #f56707;
+  background: #C3201F;
   border: none;
 }
 .twit {
@@ -156,6 +158,8 @@ textarea:focus {
   padding: 10px;
   position: relative;
   margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .twit-author { display: inline-block; font-weight: bold; margin-right: 10px; }
 .twit-follow,
@@ -167,7 +171,7 @@ textarea:focus {
   background: #fff;
   border: 1px solid silver;
   border-radius: 5px;
-  color: #f56707;
+  color: #C3201F;
   font-size: 12px;
   cursor: pointer;
 }
@@ -198,11 +202,11 @@ textarea:focus {
 
 footer {
   margin-top: 15px;
-  color: #f56707;
+  color: #C3201F;
 }
 
 footer a {
-  color: #f56707;
+  color: #C3201F;
 }
 
 .twit-img { text-align: center; }
@@ -210,5 +214,5 @@ footer a {
 .error-message { color: red; font-weight: bold; }
 #search-form { text-align: right; }
 #join-form { padding: 10px; text-align: center; }
-#hashtag-form { text-align: right; }
+#hashtag-form { text-align: right; margin-right: 10px; }
 footer { text-align: center; }

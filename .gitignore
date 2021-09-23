@@ -86,6 +86,10 @@ web_modules/
 .cache
 .parcel-cache
 
+# pem
+*.pem
+nodebird-SNS.pem
+
 # Next.js build output
 .next
 out
